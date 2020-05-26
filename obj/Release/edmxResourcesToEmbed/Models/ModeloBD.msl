@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="kasumiModelStoreContainer" CdmEntityContainer="kazumiEntities">
+    <EntitySetMapping Name="cliente">
+      <EntityTypeMapping TypeName="kasumiModel.cliente">
+        <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="correo_e" ColumnName="correo_e" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+          <ScalarProperty Name="registro_mercantil" ColumnName="registro_mercantil" />
+          <ScalarProperty Name="domicilio_fiscal" ColumnName="domicilio_fiscal" />
+          <ScalarProperty Name="nombre_razon" ColumnName="nombre_razon" />
+          <ScalarProperty Name="digito_rif" ColumnName="digito_rif" />
+          <ScalarProperty Name="numero_rif" ColumnName="numero_rif" />
+          <ScalarProperty Name="letra_rif" ColumnName="letra_rif" />
+          <ScalarProperty Name="id_tipo_cliente" ColumnName="id_tipo_cliente" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="documento">
+      <EntityTypeMapping TypeName="kasumiModel.documento">
+        <MappingFragment StoreEntitySet="documento">
+          <ScalarProperty Name="codigo_tipo_documento" ColumnName="codigo_tipo_documento" />
+          <ScalarProperty Name="alicuota_iva" ColumnName="alicuota_iva" />
+          <ScalarProperty Name="base_imponible" ColumnName="base_imponible" />
+          <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
+          <ScalarProperty Name="fecha_documento" ColumnName="fecha_documento" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+          <ScalarProperty Name="numero_documento" ColumnName="numero_documento" />
+          <ScalarProperty Name="relacionado_documento" ColumnName="relacionado_documento" />
+          <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="documento_producto">
+      <EntityTypeMapping TypeName="kasumiModel.documento_producto">
+        <MappingFragment StoreEntitySet="documento_producto">
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+          <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+          <ScalarProperty Name="id_documento_producto" ColumnName="id_documento_producto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="producto">
+      <EntityTypeMapping TypeName="kasumiModel.producto">
+        <MappingFragment StoreEntitySet="producto">
+          <ScalarProperty Name="alicuota_producto" ColumnName="alicuota_producto" />
+          <ScalarProperty Name="precio_producto" ColumnName="precio_producto" />
+          <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+          <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+          <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proveedor">
+      <EntityTypeMapping TypeName="kasumiModel.proveedor">
+        <MappingFragment StoreEntitySet="proveedor">
+          <ScalarProperty Name="correo_e" ColumnName="correo_e" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+          <ScalarProperty Name="registro_mercantil" ColumnName="registro_mercantil" />
+          <ScalarProperty Name="domicilio_fiscal" ColumnName="domicilio_fiscal" />
+          <ScalarProperty Name="nombre_razon" ColumnName="nombre_razon" />
+          <ScalarProperty Name="digito_rif" ColumnName="digito_rif" />
+          <ScalarProperty Name="numero_rif" ColumnName="numero_rif" />
+          <ScalarProperty Name="letra_rif" ColumnName="letra_rif" />
+          <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipo_cliente">
+      <EntityTypeMapping TypeName="kasumiModel.tipo_cliente">
+        <MappingFragment StoreEntitySet="tipo_cliente">
+          <ScalarProperty Name="tipo_cliente1" ColumnName="tipo_cliente" />
+          <ScalarProperty Name="id_tipo_cliente" ColumnName="id_tipo_cliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipo_documento">
+      <EntityTypeMapping TypeName="kasumiModel.tipo_documento">
+        <MappingFragment StoreEntitySet="tipo_documento">
+          <ScalarProperty Name="nombre_tipo_documento" ColumnName="nombre_tipo_documento" />
+          <ScalarProperty Name="codigo_tipo_documento" ColumnName="codigo_tipo_documento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empleado">
+      <EntityTypeMapping TypeName="kasumiModel.empleado">
+        <MappingFragment StoreEntitySet="empleado">
+          <ScalarProperty Name="id_cargo" ColumnName="id_cargo" />
+          <ScalarProperty Name="comision" ColumnName="comision" />
+          <ScalarProperty Name="sueldo" ColumnName="sueldo" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario">
+      <EntityTypeMapping TypeName="kasumiModel.usuario">
+        <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cargo">
+      <EntityTypeMapping TypeName="kasumiModel.cargo">
+        <MappingFragment StoreEntitySet="cargo">
+          <ScalarProperty Name="nombre_cargo" ColumnName="nombre_cargo" />
+          <ScalarProperty Name="id_cargo" ColumnName="id_cargo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="getDocumentoProducto" FunctionName="kasumiModel.Store.getDocumentoProducto" />
+  </EntityContainerMapping>
+</Mapping>

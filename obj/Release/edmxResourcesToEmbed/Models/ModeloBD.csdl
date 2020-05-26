@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="kasumiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="kazumiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="cliente" EntityType="kasumiModel.cliente" />
+    <EntitySet Name="documento" EntityType="kasumiModel.documento" />
+    <EntitySet Name="documento_producto" EntityType="kasumiModel.documento_producto" />
+    <EntitySet Name="producto" EntityType="kasumiModel.producto" />
+    <EntitySet Name="proveedor" EntityType="kasumiModel.proveedor" />
+    <EntitySet Name="tipo_cliente" EntityType="kasumiModel.tipo_cliente" />
+    <EntitySet Name="tipo_documento" EntityType="kasumiModel.tipo_documento" />
+    <AssociationSet Name="FK_cliente_tipo_cliente" Association="kasumiModel.FK_cliente_tipo_cliente">
+      <End Role="tipo_cliente" EntitySet="tipo_cliente" />
+      <End Role="cliente" EntitySet="cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_documento_cliente" Association="kasumiModel.FK_documento_cliente">
+      <End Role="cliente" EntitySet="cliente" />
+      <End Role="documento" EntitySet="documento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_documento_producto_documento" Association="kasumiModel.FK_documento_producto_documento">
+      <End Role="documento" EntitySet="documento" />
+      <End Role="documento_producto" EntitySet="documento_producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_documento_tipo_documento" Association="kasumiModel.FK_documento_tipo_documento">
+      <End Role="tipo_documento" EntitySet="tipo_documento" />
+      <End Role="documento" EntitySet="documento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_documento_producto_producto" Association="kasumiModel.FK_documento_producto_producto">
+      <End Role="producto" EntitySet="producto" />
+      <End Role="documento_producto" EntitySet="documento_producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_producto_proveedor" Association="kasumiModel.FK_producto_proveedor">
+      <End Role="proveedor" EntitySet="proveedor" />
+      <End Role="producto" EntitySet="producto" />
+    </AssociationSet>
+    <EntitySet Name="empleado" EntityType="kasumiModel.empleado" />
+    <EntitySet Name="usuario" EntityType="kasumiModel.usuario" />
+    <AssociationSet Name="FK_documento_empleado" Association="kasumiModel.FK_documento_empleado">
+      <End Role="empleado" EntitySet="empleado" />
+      <End Role="documento" EntitySet="documento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_usuario_empleado" Association="kasumiModel.FK_usuario_empleado">
+      <End Role="empleado" EntitySet="empleado" />
+      <End Role="usuario" EntitySet="usuario" />
+    </AssociationSet>
+    <EntitySet Name="cargo" EntityType="kasumiModel.cargo" />
+    <AssociationSet Name="FK_empleado_cargo1" Association="kasumiModel.FK_empleado_cargo1">
+      <End Role="cargo" EntitySet="cargo" />
+      <End Role="empleado" EntitySet="empleado" />
+    </AssociationSet>
+    <FunctionImport Name="getDocumentoProducto" EntitySet="documento_producto" ReturnType="Collection(kasumiModel.documento_producto)">
+      <Parameter Name="numero" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="cliente">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_tipo_cliente" Type="Int32" Nullable="false" />
+    <Property Name="letra_rif" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="numero_rif" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="digito_rif" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="nombre_razon" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="domicilio_fiscal" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="registro_mercantil" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ubicacion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="correo_e" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tipo_cliente" Relationship="kasumiModel.FK_cliente_tipo_cliente" FromRole="cliente" ToRole="tipo_cliente" />
+    <NavigationProperty Name="documento" Relationship="kasumiModel.FK_documento_cliente" FromRole="cliente" ToRole="documento" />
+  </EntityType>
+  <EntityType Name="documento">
+    <Key>
+      <PropertyRef Name="id_documento" />
+    </Key>
+    <Property Name="id_documento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:GetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <Property Name="relacionado_documento" Type="Int32" />
+    <Property Name="numero_documento" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="id_empleado" Type="Int32" />
+    <Property Name="id_cliente" Type="Int32" />
+    <Property Name="fecha_documento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_entrega" Type="DateTime" Precision="3" />
+    <Property Name="base_imponible" Type="Double" Nullable="false" />
+    <Property Name="alicuota_iva" Type="Double" />
+    <Property Name="codigo_tipo_documento" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="cliente" Relationship="kasumiModel.FK_documento_cliente" FromRole="documento" ToRole="cliente" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <NavigationProperty Name="documento_producto" Relationship="kasumiModel.FK_documento_producto_documento" FromRole="documento" ToRole="documento_producto" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <NavigationProperty Name="tipo_documento" Relationship="kasumiModel.FK_documento_tipo_documento" FromRole="documento" ToRole="tipo_documento" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <NavigationProperty Name="empleado" Relationship="kasumiModel.FK_documento_empleado" FromRole="documento" ToRole="empleado" />
+  </EntityType>
+  <EntityType Name="documento_producto">
+    <Key>
+      <PropertyRef Name="id_documento_producto" />
+    </Key>
+    <Property Name="id_documento_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_documento" Type="Int32" Nullable="false" />
+    <Property Name="id_producto" Type="Int32" Nullable="false" />
+    <Property Name="precio" Type="Double" Nullable="false" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="documento" Relationship="kasumiModel.FK_documento_producto_documento" FromRole="documento_producto" ToRole="documento" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <NavigationProperty Name="producto" Relationship="kasumiModel.FK_documento_producto_producto" FromRole="documento_producto" ToRole="producto" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  </EntityType>
+  <EntityType Name="producto">
+    <Key>
+      <PropertyRef Name="id_producto" />
+    </Key>
+    <Property Name="id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_producto" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="id_proveedor" Type="Int32" Nullable="false" />
+    <Property Name="precio_producto" Type="Double" Nullable="false" />
+    <Property Name="alicuota_producto" Type="Double" Nullable="false" />
+    <NavigationProperty Name="documento_producto" Relationship="kasumiModel.FK_documento_producto_producto" FromRole="producto" ToRole="documento_producto" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <NavigationProperty Name="proveedor" Relationship="kasumiModel.FK_producto_proveedor" FromRole="producto" ToRole="proveedor" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  </EntityType>
+  <EntityType Name="proveedor">
+    <Key>
+      <PropertyRef Name="id_proveedor" />
+    </Key>
+    <Property Name="id_proveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="letra_rif" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="numero_rif" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="digito_rif" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="nombre_razon" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="domicilio_fiscal" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="registro_mercantil" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ubicacion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="correo_e" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="producto" Relationship="kasumiModel.FK_producto_proveedor" FromRole="proveedor" ToRole="producto" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  </EntityType>
+  <EntityType Name="tipo_cliente">
+    <Key>
+      <PropertyRef Name="id_tipo_cliente" />
+    </Key>
+    <Property Name="id_tipo_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo_cliente1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="cliente" Relationship="kasumiModel.FK_cliente_tipo_cliente" FromRole="tipo_cliente" ToRole="cliente" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  </EntityType>
+  <EntityType Name="tipo_documento">
+    <Key>
+      <PropertyRef Name="codigo_tipo_documento" />
+    </Key>
+    <Property Name="codigo_tipo_documento" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="nombre_tipo_documento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="documento" Relationship="kasumiModel.FK_documento_tipo_documento" FromRole="tipo_documento" ToRole="documento" />
+  </EntityType>
+  <Association Name="FK_cliente_tipo_cliente">
+    <End Type="kasumiModel.tipo_cliente" Role="tipo_cliente" Multiplicity="1" />
+    <End Type="kasumiModel.cliente" Role="cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipo_cliente">
+        <PropertyRef Name="id_tipo_cliente" />
+      </Principal>
+      <Dependent Role="cliente">
+        <PropertyRef Name="id_tipo_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_documento_cliente">
+    <End Type="kasumiModel.cliente" Role="cliente" Multiplicity="0..1" />
+    <End Type="kasumiModel.documento" Role="documento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="documento">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_documento_producto_documento">
+    <End Type="kasumiModel.documento" Role="documento" Multiplicity="1" />
+    <End Type="kasumiModel.documento_producto" Role="documento_producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="documento">
+        <PropertyRef Name="id_documento" />
+      </Principal>
+      <Dependent Role="documento_producto">
+        <PropertyRef Name="id_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_documento_tipo_documento">
+    <End Type="kasumiModel.tipo_documento" Role="tipo_documento" Multiplicity="1" />
+    <End Type="kasumiModel.documento" Role="documento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipo_documento">
+        <PropertyRef Name="codigo_tipo_documento" />
+      </Principal>
+      <Dependent Role="documento">
+        <PropertyRef Name="codigo_tipo_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_documento_producto_producto">
+    <End Type="kasumiModel.producto" Role="producto" Multiplicity="1" />
+    <End Type="kasumiModel.documento_producto" Role="documento_producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="producto">
+        <PropertyRef Name="id_producto" />
+      </Principal>
+      <Dependent Role="documento_producto">
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_producto_proveedor">
+    <End Type="kasumiModel.proveedor" Role="proveedor" Multiplicity="1" />
+    <End Type="kasumiModel.producto" Role="producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedor">
+        <PropertyRef Name="id_proveedor" />
+      </Principal>
+      <Dependent Role="producto">
+        <PropertyRef Name="id_proveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="empleado">
+    <Key>
+      <PropertyRef Name="id_empleado" />
+    </Key>
+    <Property Name="id_empleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sueldo" Type="Double" />
+    <Property Name="comision" Type="Double" />
+    <Property Name="id_cargo" Type="Int32" />
+    <NavigationProperty Name="documento" Relationship="kasumiModel.FK_documento_empleado" FromRole="empleado" ToRole="documento" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <NavigationProperty Name="usuario" Relationship="kasumiModel.FK_usuario_empleado" FromRole="empleado" ToRole="usuario" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <NavigationProperty Name="cargo" Relationship="kasumiModel.FK_empleado_cargo1" FromRole="empleado" ToRole="cargo" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="id_empleado" Type="Int32" />
+    <NavigationProperty Name="empleado" Relationship="kasumiModel.FK_usuario_empleado" FromRole="usuario" ToRole="empleado" />
+  </EntityType>
+  <Association Name="FK_documento_empleado">
+    <End Type="kasumiModel.empleado" Role="empleado" Multiplicity="0..1" />
+    <End Type="kasumiModel.documento" Role="documento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empleado">
+        <PropertyRef Name="id_empleado" />
+      </Principal>
+      <Dependent Role="documento">
+        <PropertyRef Name="id_empleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_usuario_empleado">
+    <End Type="kasumiModel.empleado" Role="empleado" Multiplicity="0..1" />
+    <End Type="kasumiModel.usuario" Role="usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empleado">
+        <PropertyRef Name="id_empleado" />
+      </Principal>
+      <Dependent Role="usuario">
+        <PropertyRef Name="id_empleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="cargo">
+    <Key>
+      <PropertyRef Name="id_cargo" />
+    </Key>
+    <Property Name="id_cargo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_cargo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="empleado" Relationship="kasumiModel.FK_empleado_cargo1" FromRole="cargo" ToRole="empleado" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  </EntityType>
+  <Association Name="FK_empleado_cargo1">
+    <End Type="kasumiModel.cargo" Role="cargo" Multiplicity="0..1" />
+    <End Type="kasumiModel.empleado" Role="empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cargo">
+        <PropertyRef Name="id_cargo" />
+      </Principal>
+      <Dependent Role="empleado">
+        <PropertyRef Name="id_cargo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

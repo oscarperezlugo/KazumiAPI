@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="54e86749c1c14ccda8f5d8dab0ccc98c" Name="Diagram1">
+        <EntityTypeShape EntityType="kasumiModel.cliente" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="kasumiModel.documento" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="kasumiModel.documento_producto" Width="1.5" PointX="7.5" PointY="1.625" />
+        <EntityTypeShape EntityType="kasumiModel.producto" Width="1.5" PointX="5.25" PointY="12.625" />
+        <EntityTypeShape EntityType="kasumiModel.proveedor" Width="1.5" PointX="3" PointY="12.25" />
+        <EntityTypeShape EntityType="kasumiModel.tipo_cliente" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="kasumiModel.tipo_documento" Width="1.5" PointX="3" PointY="6.25" />
+        <AssociationConnector Association="kasumiModel.FK_cliente_tipo_cliente" />
+        <AssociationConnector Association="kasumiModel.FK_documento_cliente" />
+        <AssociationConnector Association="kasumiModel.FK_documento_producto_documento" />
+        <AssociationConnector Association="kasumiModel.FK_documento_tipo_documento" />
+        <AssociationConnector Association="kasumiModel.FK_documento_producto_producto" />
+        <AssociationConnector Association="kasumiModel.FK_producto_proveedor" />
+        <EntityTypeShape EntityType="kasumiModel.empleado" Width="1.5" PointX="7.625" PointY="6" />
+        <EntityTypeShape EntityType="kasumiModel.usuario" Width="1.5" PointX="9.875" PointY="6.375" />
+        <AssociationConnector Association="kasumiModel.FK_documento_empleado" />
+        <AssociationConnector Association="kasumiModel.FK_usuario_empleado" />
+        <EntityTypeShape EntityType="kasumiModel.cargo" Width="1.5" PointX="5.375" PointY="6.625" />
+        <AssociationConnector Association="kasumiModel.FK_empleado_cargo1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
